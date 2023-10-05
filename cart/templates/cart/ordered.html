@@ -1,0 +1,39 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+{% block content %}
+<h1>주문 내역</h1>
+<div>
+  {% if messages %}
+    {% for message in messages %}
+  <div class="alert alert-primary" role="alert">
+    <h3><strong> {{ message }} </strong></h3>
+  </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% for i in order %}
+<div>
+    <h3>주문일 : {{ i.created_at }}</h3>
+      받는 분: {{ i.name }} <br>
+      이메일: {{ i.email }}<br>
+      배송지 주소: {{ i.address }}<br>
+      휴대전화: {{ i.phone }}<br>
+</div>
+
+<div>
+{% for j in i.orderitem.values %} <!-- jsonfield 로서 i.orderitem.items ,i.orderitem.i.keys, i.orderitem.values 가능 -->
+
+    {{ j.product_name }} &nbsp&nbsp
+    {{ j.price }} &nbsp&nbsp
+    {{ j.quantity }} &nbsp&nbsp
+    {{ j.prodcut_category }} &nbsp&nbsp
+    <img src="{{ j.product_image }}" width="200" height="200"> &nbsp&nbsp
+    {{ j.total_price }}<br>
+{% endfor %}
+</div>
+=============================================================================
+{% endfor %}
+{% endblock %}

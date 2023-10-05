@@ -1,0 +1,22 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}
+         {% static 'img/no_image.png' %}{% endif %}" width="250" height="250">
+    <h1>{{ product.name }}</h1>
+    <h2><a href="{{ product.category.get_absolute_url }}"> {{ product.category }}</a></h2>
+    <p class="price">{{ product.price }}&nbsp(원)</p>
+    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="카드 담기">
+    </form>
+    {{ product.description|linebreaks }} <!--줄 바꿈을 <br>로, 이중 줄 바꿈을 <p>로 변형 -->
+</div>
+{% endblock %}
