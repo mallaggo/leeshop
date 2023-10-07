@@ -5,8 +5,6 @@
 <title>{% block mytitle%}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -38,6 +36,8 @@
         <a class="nav-link" href="#">message board</a>
       </li>
     </ul>
+
+
 <span style="vertical-align: middle; ">
     <form action="" class="form-inline my-2 my-lg-0" method="post" >
       {% csrf_token %}
@@ -57,24 +57,20 @@
     </form></span>
 
   </div>
-           <nav class="badge badge-secondary" style=" width:150px; line-height:200% "  >
 
-      {% if user.is_authenticated %}
-               <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               {{ user.name }}
-   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Action</button>
-    <button class="dropdown-item" type="button">Another action</button>
-    <button class="dropdown-item" type="button">Something else here</button>
-  </div>
+
+  <nav class="badge badge-secondary" style=" width:150px; line-height:200% "  >
+ {% if user.is_authenticated %}
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     {{ user.name }}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="{% url 'cart:order_success'%}">주문내역</a></li>
+    <li><a class="dropdown-item" href="{% url 'shop:profile_edit' %}">내정보수정</a></li>
+    <li><a class="dropdown-item" href="{% url 'shop:logout_user' %}">로그아웃</a></li>
+  </ul>
 </div>
-
-
-      <a href="{% url 'cart:order_success'%}">주문내역</a><br>
-    <a href="{% url 'shop:logout_user' %}"><font size="3" >로그아웃</font></a>
-    &nbsp&nbsp;<a href="{% url 'shop:profile_edit' %}">내정보수정</a>
     {% else %}
     <font size="3" >누구세요?</font>
     <br>
