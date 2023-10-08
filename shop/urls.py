@@ -10,5 +10,4 @@ urlpatterns=[
     path('<str:category_slug>/',views.product_list,name='product_list_category'),
     path('<int:id>/<str:slug>/',views.product_detail,name='product_detail'), #한글일때는 <str:slug>방식을 쓴다.
     path('',views.product_list,name='product_list'),
-    path('test/',views.test,name='test'),
 ]
