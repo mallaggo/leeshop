@@ -10,96 +10,47 @@
     {% bootstrap_javascript %}
 </head>
 <body>
-<div class="container" >
-<header>
-   <nav class="navbar navbar-expand-lg  navbar navbar-dark bg-dark container"  >
-       <div class="container">
-  <a class="navbar-brand" href="{% url 'shop:product_list' %}" class="logo">
-    Bakery Total Shop</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'shop:product_list' %}">HOME</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">apple</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">banana</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">message board</a>
-      </li>
+<nav>
+
+<ul class="nav nav-tabs">
+    <li>
+
+        <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'img/bee1.png' %}" alt="" width="50" height="50">
+    </a>
+  </div>
+
+    </li>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">CaseShop</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="#">소개</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">캠핑</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
     </ul>
-
-
-<span style="vertical-align: middle; ">
-    <form action="" class="form-inline my-2 my-lg-0" method="post" >
-      {% csrf_token %}
-        <div class="col-auto">
-
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">search</div>
-        </div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" name="searchword" placeholder="what can i">
-           <span class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">찾아보기</button>
-    </span>
-      </div>
-    </div>
-
-    </form></span>
-
-  </div>
-
-
-  <nav class="badge badge-secondary" style=" width:150px; line-height:200% "  >
- {% if user.is_authenticated %}
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-     {{ user.name }}
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="{% url 'cart:order_success'%}">주문내역</a></li>
-    <li><a class="dropdown-item" href="{% url 'shop:profile_edit' %}">내정보수정</a></li>
-    <li><a class="dropdown-item" href="{% url 'shop:logout_user' %}">로그아웃</a></li>
-  </ul>
-</div>
-    {% else %}
-    <font size="3" >누구세요?</font>
-    <br>
-    <a href="{% url 'shop:login_user' %}"><font size="3" >로그인</font></a>
-      {% endif %}
-    <div>
-        {% if request.user.id|stringformat:"s" in request.session.keys %}
-    <div class="cart">
-    <a href="{% url 'cart:cart_detail'%}">Your Cart is not Empty</a>
-    </div>
-    {% else %}
-    <div class="cart">
-    Your Cart is Empty
-    </div>
-    {% endif %}
-    </div>
-    </nav>
-           </div>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">운동</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">음식</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">문의게시판</a>
+  </li>
+</ul>
 </nav>
-</header>
-<br>
 
-{% block content %}{% endblock %}
-
-<footer>
-  <p class="text-light bg-dark container" align="center" >it is testing page for study : wavecanon@naver.com</p>
-    </footer>
-  </div>
 
 </body>
 </html>
-
