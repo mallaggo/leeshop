@@ -87,3 +87,5 @@ def profile_edit(request):
         return render(request,'authenticate/profile_edit.html',context)
 
 
+def test(request):
+    pass
