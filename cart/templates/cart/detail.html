@@ -3,8 +3,14 @@
 
 
 {% block content %}
-<h1>Shopping cart</h1>
-<div>
+
+
+
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+  <p>
+    <h1>Shopping cart</h1>
+  </p>
   {% if messages %}
     {% for message in messages %}
   <div class="alert alert-primary" role="alert">
@@ -13,7 +19,8 @@
     {% endfor %}
   {% endif %}
 </div>
-<table class="cart">
+<div class="h-100 d-flex align-items-center justify-content-center">
+<table  >
   <thead>
   <tr>
     <th>Image</th>
@@ -48,19 +55,17 @@
   {% endwith %}
   {% endfor %}
   <tr class="total">
-    <td>Total</td>
+    <td><h3>Total</h3></td>
     <td colspan="4"></td>
-    <td class="num">{{ cart.get_total_price }}&nbsp(원)</td>
+    <td class="num"><h3>{{ cart.get_total_price }}&nbsp(원)</h3></td>
   </tr>
   </tbody>
 </table>
 
-<div>
+  </div>
+<br><br><br>
 
-   <section>
-    <h1>주문 정보</h1>
-  </section>
-
+<div class="h-100 d-flex align-items-center justify-content-center">
 
     <form action="" method="post">
       {% csrf_token %}
@@ -69,15 +74,10 @@
       배송지 주소: <input type="text" name="address" id="address" size="40" ><br> <!-- input 태그 크기는 글자수인 size 속성으로 -->
       휴대전화: <input type="text" name="phone" id="phone" ><br>
       <input type="submit" value="계산">
-
+      <a href="{% url 'shop:product_list' %}" class="buttonlight">쇼핑 계속</a>
     </form>
-
-
 </div>
-<p class="text-right">
-  <a href="{% url 'shop:product_list' %}" class="buttonlight">쇼핑 계속</a>
 
-</p>
 
 <script>
 window.onload=function(){
@@ -87,4 +87,5 @@ window.onload=function(){
     document.getElementById("phone").value="{{ obj.phone }}";
 }
 </script>
+
 {% endblock %}

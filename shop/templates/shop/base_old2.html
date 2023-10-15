@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>{% block mytitle%}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body class="w-75 ">
+
+<nav class="navbar navbar-dark bg-dark p-3 py-lg-4" >
+<ul class="nav ">
+    <li>
+        <div class="container">
+    <a class="navbar-brand" href="{% url 'shop:product_list' %}">
+      <img src="{% static 'img/bee1.png' %}" alt="" width="50" height="50"> <!-- 이미지가 안나오면 확장자를 확인하고 바꿔보자 -->
+    </a>
+  </div>
+    </li>
+
+  <li class="nav-item " >
+  <a class="nav-link" href="{% url 'shop:product_list' %}" style="color:#FFA500">홈으로</a>
+  </li>
+  <li class="nav-item " >
+  <a class="nav-link" href="#" style="color:#FFA500">소개</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" style="color:#FFA500" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">캠핑</a>
+    <ul class="dropdown-menu bg-dark" >
+      <li><a class="dropdown-item" href="#" style="color:#FFA500">옷</a></li>
+      <li><a class="dropdown-item" href="#" style="color:#FFA500">도구</a></li>
+      <li><a class="dropdown-item" href="#" style="color:#FFA500">텐트/파라솔</a></li>
+      <li><hr class="dropdown-divider" style="color:#FFA500"></li>
+      <li><a class="dropdown-item" href="#" style="color:#FFA500">Separated link</a></li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" style="color:#FFA500">운동</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#" style="color:#FFA500">음식</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#" style="color:#FFA500">문의게시판</a>
+  </li>
+    <li>
+     <form class="d-flex">
+         {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit" >Search</button>
+    </form>
+    </li>
+</ul>
+
+    <span>
+        <ul>
+       {% if user.is_authenticated %}
+       <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" style="color:#FFA500" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+        {{ user.name }}</a>
+    <ul class="dropdown-menu bg-dark" >
+      <li><a class="dropdown-item" href="{% url 'shop:profile_edit' %}" style="color:#FFA500">정보수정</a></li>
+      <li><a class="dropdown-item" href="{% url 'cart:order_success'%}" style="color:#FFA500">주문목록</a></li>
+      <li><a class="dropdown-item" href="#" style="color:#FFA500">빈공란</a></li>
+      <li><hr class="dropdown-divider" style="color:#FFA500"></li>
+      <li><a class="dropdown-item" href="{% url 'shop:logout_user' %}" style="color:#FFA500">로그아웃</a></li>
+    </ul>
+    </li>
+      {% else %}
+            <li class="nav-item">
+                <a href="{% url 'shop:login_user' %}" class="nav-link" style="color:#FFA500">로그인 하세요</a>
+            </li>
+            {% endif %}
+            </ul>
+        </span>
+        <span class="p-2">
+        <ul>
+            <li class="nav-item ">
+     {% if request.user.id|stringformat:"s" in request.session.keys %}
+                <a href="{% url 'cart:cart_detail' %}">
+                <img src="{% static 'img/cart2.jpg' %}" width="30" height="30">
+                    </a>
+     {% else %}
+                <img src="{% static 'img/cart1.jpg' %}" width="30" height="30">
+     {% endif %}
+            </li>
+        </ul>
+
+    </span>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer>
+  <p class="text-light bg-dark container" align="center" >it is testing page for study : wavecanon@naver.com</p>
+    </footer>
+  </div>
+
+</body>
+
+</html>

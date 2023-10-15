@@ -3,8 +3,10 @@
 
 
 {% block content %}
-<h1>주문 내역</h1>
-<div>
+
+
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <h1>주문 내역</h1>
   {% if messages %}
     {% for message in messages %}
   <div class="alert alert-primary" role="alert">
@@ -13,27 +15,31 @@
     {% endfor %}
   {% endif %}
 </div>
+<br><br>
 
-{% for i in order %}
-<div>
-    <h3>주문일 : {{ i.created_at }}</h3>
+<div class="h-100 d-flex align-items-center justify-content-center">
+    {% for i in order %}
+    주문일 : {{ i.created_at }}<br>
       받는 분: {{ i.name }} <br>
       이메일: {{ i.email }}<br>
       배송지 주소: {{ i.address }}<br>
       휴대전화: {{ i.phone }}<br>
 </div>
 
-<div>
-{% for j in i.orderitem.values %} <!-- jsonfield 로서 i.orderitem.items ,i.orderitem.i.keys, i.orderitem.values 가능 -->
 
+
+{% for j in i.orderitem.values %} <!-- jsonfield 로서 i.orderitem.items ,i.orderitem.i.keys, i.orderitem.values 가능 -->
+<div class="h-100 d-flex align-items-center justify-content-center">
+    <img src="{{ j.product_image }}" width="200" height="200"> &nbsp&nbsp
     {{ j.product_name }} &nbsp&nbsp
     {{ j.price }} &nbsp&nbsp
     {{ j.quantity }} &nbsp&nbsp
     {{ j.prodcut_category }} &nbsp&nbsp
-    <img src="{{ j.product_image }}" width="200" height="200"> &nbsp&nbsp
-    {{ j.total_price }}<br>
+    {{ j.total_price }}<br><br>
+    
+    </div>
 {% endfor %}
-</div>
-=============================================================================
+
+
 {% endfor %}
 {% endblock %}
