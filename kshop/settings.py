@@ -125,15 +125,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "kshop", "../shop/static"),) #app마다 각각의 static 폴더가 들어갈 수 있다.
-STATIC_ROOT = os.path.join(BASE_DIR, "deployment", "collected_static") #배포 전에 최종 모을 폴더 (python manage.py collectstatic)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "deployment", "collected_static/") #배포 전에 최종 모을 폴더 (python manage.py collectstatic)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "kshop", "../shop/static/"),) #app마다 각각의 static 폴더가 들어갈 수 있다.
+
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"deployment",'media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-#AUTH_USER_MODEL = 'kmall.User'
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True    #브라우저 닫으면 세션 삭제됨
